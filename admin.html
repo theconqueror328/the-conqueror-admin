@@ -1,35 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>THE ⚔ CONQUEROR | Admin</title>
 
 <style>
-
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 body {
+  margin: 0;
   font-family: Arial, sans-serif;
   background: #070707;
   color: white;
-  min-height: 100vh;
 }
 
-/* ================================
-   LOGIN
-================================ */
+/* LOGIN */
 
 #loginPage {
   min-height: 100vh;
@@ -37,24 +26,21 @@ body {
   align-items: center;
   justify-content: center;
   padding: 20px;
-
-  background:
-    radial-gradient(
-      circle at center,
-      #4d1708 0%,
-      #120806 40%,
-      #070707 75%
-    );
+  background: radial-gradient(
+    circle,
+    #4d1708 0%,
+    #120806 45%,
+    #070707 80%
+  );
 }
 
 .login-box {
   width: 100%;
   max-width: 420px;
+  padding: 30px;
   background: #101010;
   border: 1px solid #292929;
   border-radius: 15px;
-  padding: 30px;
-  box-shadow: 0 20px 60px rgba(0,0,0,.5);
 }
 
 .login-logo {
@@ -63,26 +49,24 @@ body {
 }
 
 .login-logo h1 {
+  margin: 0;
   color: #ff5b22;
-  font-size: 30px;
 }
 
 .login-logo p {
   color: #888;
-  margin-top: 8px;
 }
 
-.login-box label {
+label {
   display: block;
-  font-size: 14px;
-  font-weight: bold;
   margin-top: 18px;
+  font-weight: bold;
 }
 
-.login-box input {
+input {
   width: 100%;
-  padding: 14px;
   margin-top: 8px;
+  padding: 14px;
   background: #070707;
   color: white;
   border: 1px solid #333;
@@ -90,24 +74,23 @@ body {
   outline: none;
 }
 
-.login-box input:focus {
+input:focus {
   border-color: #ff541c;
 }
 
-.main-button {
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.login-button {
   width: 100%;
   margin-top: 22px;
   padding: 14px;
-  border: none;
-  border-radius: 8px;
   background: #ff541c;
   color: white;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.main-button:disabled {
-  opacity: .6;
 }
 
 .login-error {
@@ -116,14 +99,10 @@ body {
   padding: 12px;
   border-radius: 8px;
   background: #3a0b0b;
-  border: 1px solid #702020;
   color: #ff7777;
-  word-break: break-word;
 }
 
-/* ================================
-   DASHBOARD
-================================ */
+/* DASHBOARD */
 
 #dashboard {
   display: none;
@@ -139,32 +118,25 @@ header {
   width: 94%;
   max-width: 1200px;
   margin: auto;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 15px;
 }
 
 header h1 {
+  margin: 0;
   color: #ff5b22;
-  font-size: 26px;
 }
 
 header p {
+  margin: 5px 0 0;
   color: #888;
-  margin-top: 4px;
-  font-size: 13px;
 }
 
 .logout {
+  padding: 11px 16px;
   background: #333;
   color: white;
-  border: none;
-  padding: 11px 16px;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
 }
 
 .container {
@@ -174,24 +146,16 @@ header p {
   padding: 30px 0;
 }
 
-/* ================================
-   ERROR
-================================ */
-
 #error {
   display: none;
-  background: #3a0b0b;
-  border: 1px solid #702020;
-  color: #ff7777;
   padding: 15px;
-  border-radius: 8px;
   margin-bottom: 20px;
-  word-break: break-word;
+  border-radius: 8px;
+  background: #3a0b0b;
+  color: #ff7777;
 }
 
-/* ================================
-   STATS
-================================ */
+/* STATS */
 
 .stats {
   display: grid;
@@ -201,10 +165,10 @@ header p {
 }
 
 .stat {
+  padding: 20px;
   background: #101010;
   border: 1px solid #292929;
   border-radius: 12px;
-  padding: 20px;
 }
 
 .stat-title {
@@ -213,15 +177,13 @@ header p {
 }
 
 .stat-number {
+  margin-top: 8px;
   font-size: 30px;
   font-weight: bold;
-  margin-top: 8px;
   color: #ff652c;
 }
 
-/* ================================
-   TOOLBAR
-================================ */
+/* SEARCH */
 
 .toolbar {
   display: flex;
@@ -231,31 +193,15 @@ header p {
 
 .search {
   flex: 1;
-  padding: 14px;
-  background: #101010;
-  border: 1px solid #333;
-  border-radius: 8px;
-  color: white;
-  outline: none;
-}
-
-.search:focus {
-  border-color: #ff541c;
 }
 
 .refresh {
   padding: 12px 18px;
-  border: none;
-  border-radius: 8px;
   background: #ff541c;
   color: white;
-  font-weight: bold;
-  cursor: pointer;
 }
 
-/* ================================
-   TABLE
-================================ */
+/* TABLE */
 
 .table-wrapper {
   overflow-x: auto;
@@ -266,8 +212,8 @@ header p {
 
 table {
   width: 100%;
+  min-width: 750px;
   border-collapse: collapse;
-  min-width: 800px;
 }
 
 th,
@@ -279,20 +225,13 @@ td {
 
 th {
   color: #ff652c;
-  font-size: 13px;
-}
-
-td {
-  font-size: 14px;
 }
 
 .status {
-  display: inline-block;
   padding: 5px 9px;
   border-radius: 20px;
   font-size: 11px;
   font-weight: bold;
-  text-transform: uppercase;
 }
 
 .pending {
@@ -310,14 +249,10 @@ td {
   color: #ff6969;
 }
 
-.action-button {
-  border: none;
+.action {
   padding: 7px 10px;
-  border-radius: 6px;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
   margin-right: 4px;
+  color: white;
 }
 
 .approve {
@@ -328,127 +263,46 @@ td {
   background: #a71919;
 }
 
-.view {
-  background: #333;
-}
-
-/* ================================
-   APPLICATION DETAILS
-================================ */
-
-#details {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.75);
-  padding: 20px;
-  overflow-y: auto;
-  z-index: 10;
-}
-
-.details-box {
-  width: 100%;
-  max-width: 650px;
-  margin: 50px auto;
-  background: #101010;
-  border: 1px solid #333;
-  border-radius: 15px;
-  padding: 25px;
-}
-
-.details-box h2 {
-  color: #ff652c;
-  margin-bottom: 20px;
-}
-
-.detail-row {
-  padding: 12px 0;
-  border-bottom: 1px solid #242424;
-}
-
-.detail-label {
-  color: #888;
-  font-size: 12px;
-  margin-bottom: 4px;
-}
-
-.detail-value {
-  word-break: break-word;
-}
-
-.close-details {
-  margin-top: 20px;
-  background: #333;
-  color: white;
-  border: none;
-  padding: 12px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
 .loading {
   text-align: center;
   color: #888;
   padding: 30px;
 }
 
-/* ================================
-   MOBILE
-================================ */
-
 @media (max-width: 700px) {
-
   .stats {
     grid-template-columns: 1fr 1fr;
-  }
-
-  .header-inner {
-    align-items: flex-start;
   }
 
   .toolbar {
     flex-direction: column;
   }
 
-  header h1 {
-    font-size: 20px;
+  .header-inner {
+    gap: 15px;
   }
-
 }
-
 </style>
-
 </head>
-
 
 <body>
 
-
-<!-- ================================
+<!-- =========================
      LOGIN PAGE
-================================ -->
+========================= -->
 
 <section id="loginPage">
 
   <div class="login-box">
 
     <div class="login-logo">
-
-      <h1>
-        THEㅤ⚔ㅤCONQUEROR
-      </h1>
-
-      <p>
-        Admin Dashboard
-      </p>
-
+      <h1>THEㅤ⚔ㅤCONQUEROR</h1>
+      <p>Admin Dashboard</p>
     </div>
-
 
     <form id="loginForm">
 
       <label>
-
         Admin Email
 
         <input
@@ -457,12 +311,9 @@ td {
           placeholder="Enter admin email"
           required
         >
-
       </label>
 
-
       <label>
-
         Password
 
         <input
@@ -471,18 +322,15 @@ td {
           placeholder="Enter password"
           required
         >
-
       </label>
-
 
       <button
         type="submit"
-        class="main-button"
+        class="login-button"
         id="loginButton"
       >
         🔐 LOGIN
       </button>
-
 
       <div
         id="loginError"
@@ -496,30 +344,20 @@ td {
 </section>
 
 
-
-<!-- ================================
+<!-- =========================
      DASHBOARD
-================================ -->
+========================= -->
 
 <section id="dashboard">
-
 
 <header>
 
   <div class="header-inner">
 
     <div>
-
-      <h1>
-        THEㅤ⚔ㅤCONQUEROR
-      </h1>
-
-      <p>
-        Guild Recruitment Admin Dashboard
-      </p>
-
+      <h1>THEㅤ⚔ㅤCONQUEROR</h1>
+      <p>Guild Recruitment Admin Dashboard</p>
     </div>
-
 
     <button
       class="logout"
@@ -533,20 +371,13 @@ td {
 </header>
 
 
-
 <div class="container">
-
 
   <div id="error"></div>
 
-
-  <!-- STATS -->
-
   <div class="stats">
 
-
     <div class="stat">
-
       <div class="stat-title">
         TOTAL APPLICATIONS
       </div>
@@ -557,12 +388,10 @@ td {
       >
         0
       </div>
-
     </div>
 
 
     <div class="stat">
-
       <div class="stat-title">
         PENDING
       </div>
@@ -573,12 +402,10 @@ td {
       >
         0
       </div>
-
     </div>
 
 
     <div class="stat">
-
       <div class="stat-title">
         APPROVED
       </div>
@@ -589,12 +416,10 @@ td {
       >
         0
       </div>
-
     </div>
 
 
     <div class="stat">
-
       <div class="stat-title">
         REJECTED
       </div>
@@ -605,15 +430,10 @@ td {
       >
         0
       </div>
-
     </div>
-
 
   </div>
 
-
-
-  <!-- SEARCH -->
 
   <div class="toolbar">
 
@@ -623,7 +443,6 @@ td {
       type="text"
       placeholder="Search by IGN or UID..."
     >
-
 
     <button
       class="refresh"
@@ -635,9 +454,6 @@ td {
   </div>
 
 
-
-  <!-- APPLICATION TABLE -->
-
   <div class="table-wrapper">
 
     <table>
@@ -645,35 +461,25 @@ td {
       <thead>
 
         <tr>
-
           <th>IGN</th>
-
           <th>UID</th>
-
           <th>ROLE</th>
-
           <th>RANK</th>
-
           <th>STATUS</th>
-
           <th>ACTION</th>
-
         </tr>
 
       </thead>
 
-
       <tbody id="applications">
 
         <tr>
-
           <td
             colspan="6"
             class="loading"
           >
             Loading applications...
           </td>
-
         </tr>
 
       </tbody>
@@ -682,136 +488,67 @@ td {
 
   </div>
 
-
 </div>
 
 </section>
 
 
-
-<!-- ================================
-     APPLICATION DETAILS
-================================ -->
-
-<div id="details">
-
-  <div class="details-box">
-
-    <h2>
-      APPLICATION DETAILS
-    </h2>
-
-    <div id="detailsContent"></div>
-
-    <button
-      class="close-details"
-      onclick="closeDetails()"
-    >
-      CLOSE
-    </button>
-
-  </div>
-
-</div>
-
-
-
 <script>
 
-/*
-========================================
-SUPABASE CONFIGURATION
-========================================
-*/
+/* =====================================
+   SUPABASE CONFIG
+===================================== */
 
 const SUPABASE_URL =
   "https://muyggfhblazjqoewrxth.supabase.co";
 
+/*
+IMPORTANT:
+Replace the value below with your
+Supabase publishable key.
+*/
 
 const SUPABASE_ANON_KEY =
   "sb_publishable_M_7Cb2GtvzQqLftmUJE_1Q_fXB1e3Ma";
 
 
-/*
-========================================
-VARIABLES
-========================================
-*/
-
-let allApplications = [];
+/* =====================================
+   VARIABLES
+===================================== */
 
 let accessToken = null;
+let allApplications = [];
 
 
-/*
-========================================
-ELEMENTS
-========================================
-*/
+/* =====================================
+   ELEMENTS
+===================================== */
 
 const loginPage =
-  document.getElementById(
-    "loginPage"
-  );
+  document.getElementById("loginPage");
 
 const dashboard =
-  document.getElementById(
-    "dashboard"
-  );
+  document.getElementById("dashboard");
 
 const loginForm =
-  document.getElementById(
-    "loginForm"
-  );
+  document.getElementById("loginForm");
 
 const loginButton =
-  document.getElementById(
-    "loginButton"
-  );
+  document.getElementById("loginButton");
 
 const loginError =
-  document.getElementById(
-    "loginError"
-  );
-
-const errorBox =
-  document.getElementById(
-    "error"
-  );
+  document.getElementById("loginError");
 
 const applicationsTable =
-  document.getElementById(
-    "applications"
-  );
+  document.getElementById("applications");
+
+const errorBox =
+  document.getElementById("error");
 
 
-/*
-========================================
-SUPABASE REQUEST HEADERS
-========================================
-*/
-
-function authHeaders() {
-
-  return {
-
-    "apikey":
-      SUPABASE_ANON_KEY,
-
-    "Authorization":
-      "Bearer " +
-      accessToken
-
-  };
-
-}
-
-
-/*
-========================================
-LOGIN
-========================================
-*/
+/* =====================================
+   LOGIN
+===================================== */
 
 loginForm.addEventListener(
   "submit",
@@ -819,62 +556,42 @@ loginForm.addEventListener(
 
     event.preventDefault();
 
-    loginError.style.display =
-      "none";
+    loginError.style.display = "none";
 
     loginButton.disabled = true;
-
-    loginButton.textContent =
-      "LOGGING IN...";
-
+    loginButton.textContent = "LOGGING IN...";
 
     const email =
-      document.getElementById(
-        "email"
-      ).value.trim();
-
+      document.getElementById("email")
+        .value
+        .trim();
 
     const password =
-      document.getElementById(
-        "password"
-      ).value;
-
+      document.getElementById("password")
+        .value;
 
     try {
 
       const response =
         await fetch(
-
           SUPABASE_URL +
           "/auth/v1/token?grant_type=password",
-
           {
-
             method: "POST",
 
             headers: {
-
               "apikey":
                 SUPABASE_ANON_KEY,
 
               "Content-Type":
                 "application/json"
-
             },
 
-            body:
-              JSON.stringify({
-
-                email:
-                  email,
-
-                password:
-                  password
-
-              })
-
+            body: JSON.stringify({
+              email: email,
+              password: password
+            })
           }
-
         );
 
 
@@ -888,15 +605,11 @@ loginForm.addEventListener(
           result.error_description ||
           result.msg ||
           result.message ||
-          "Invalid email or password."
+          "Login failed."
         );
 
       }
 
-
-      /*
-      Save session
-      */
 
       accessToken =
         result.access_token;
@@ -904,28 +617,11 @@ loginForm.addEventListener(
 
       localStorage.setItem(
         "tc_admin_access_token",
-        result.access_token
+        accessToken
       );
 
 
-      if (
-        result.refresh_token
-      ) {
-
-        localStorage.setItem(
-          "tc_admin_refresh_token",
-          result.refresh_token
-        );
-
-      }
-
-
-      /*
-      Show dashboard
-      */
-
       showDashboard();
-
 
     }
 
@@ -951,65 +647,30 @@ loginForm.addEventListener(
 );
 
 
-/*
-========================================
-SHOW DASHBOARD
-========================================
-*/
+/* =====================================
+   SHOW DASHBOARD
+===================================== */
 
 function showDashboard() {
 
-  loginPage.style.display =
-    "none";
+  loginPage.style.display = "none";
 
-  dashboard.style.display =
-    "block";
+  dashboard.style.display = "block";
 
   loadApplications();
 
 }
 
 
-/*
-========================================
-LOGOUT
-========================================
-*/
+/* =====================================
+   LOGOUT
+===================================== */
 
 document.getElementById(
   "logoutButton"
 ).addEventListener(
   "click",
-  async function() {
-
-    try {
-
-      if (accessToken) {
-
-        await fetch(
-          SUPABASE_URL +
-          "/auth/v1/logout",
-          {
-
-            method: "POST",
-
-            headers: {
-              ...authHeaders()
-            }
-
-          }
-        );
-
-      }
-
-    }
-
-    catch (error) {
-
-      console.error(error);
-
-    }
-
+  function() {
 
     accessToken = null;
 
@@ -1017,17 +678,11 @@ document.getElementById(
       "tc_admin_access_token"
     );
 
-    localStorage.removeItem(
-      "tc_admin_refresh_token"
-    );
-
-
     dashboard.style.display =
       "none";
 
     loginPage.style.display =
       "flex";
-
 
     loginForm.reset();
 
@@ -1035,31 +690,20 @@ document.getElementById(
 );
 
 
-/*
-========================================
-LOAD APPLICATIONS
-========================================
-*/
+/* =====================================
+   LOAD APPLICATIONS
+===================================== */
 
 async function loadApplications() {
 
-  errorBox.style.display =
-    "none";
-
+  errorBox.style.display = "none";
 
   applicationsTable.innerHTML = `
-
     <tr>
-
-      <td
-        colspan="6"
-        class="loading"
-      >
+      <td colspan="6" class="loading">
         Loading applications...
       </td>
-
     </tr>
-
   `;
 
 
@@ -1067,19 +711,20 @@ async function loadApplications() {
 
     const response =
       await fetch(
-
         SUPABASE_URL +
         "/rest/v1/applications?select=*&order=created_at.desc",
-
         {
-
           method: "GET",
 
-          headers:
-            authHeaders()
+          headers: {
+            "apikey":
+              SUPABASE_ANON_KEY,
 
+            "Authorization":
+              "Bearer " +
+              accessToken
+          }
         }
-
       );
 
 
@@ -1088,12 +733,7 @@ async function loadApplications() {
 
 
     if (!response.ok) {
-
-      throw new Error(
-        text ||
-        "Could not load applications."
-      );
-
+      throw new Error(text);
     }
 
 
@@ -1106,7 +746,6 @@ async function loadApplications() {
     displayApplications(
       allApplications
     );
-
 
   }
 
@@ -1121,32 +760,14 @@ async function loadApplications() {
     errorBox.style.display =
       "block";
 
-
-    applicationsTable.innerHTML = `
-
-      <tr>
-
-        <td
-          colspan="6"
-          class="loading"
-        >
-          Could not load applications.
-        </td>
-
-      </tr>
-
-    `;
-
   }
 
 }
 
 
-/*
-========================================
-STATISTICS
-========================================
-*/
+/* =====================================
+   STATS
+===================================== */
 
 function updateStats() {
 
@@ -1185,11 +806,9 @@ function updateStats() {
 }
 
 
-/*
-========================================
-DISPLAY APPLICATIONS
-========================================
-*/
+/* =====================================
+   DISPLAY
+===================================== */
 
 function displayApplications(
   applications
@@ -1198,22 +817,14 @@ function displayApplications(
   if (!applications.length) {
 
     applicationsTable.innerHTML = `
-
       <tr>
-
-        <td
-          colspan="6"
-          class="loading"
-        >
+        <td colspan="6" class="loading">
           No applications found.
         </td>
-
       </tr>
-
     `;
 
     return;
-
   }
 
 
@@ -1251,36 +862,34 @@ function displayApplications(
 
           <td>
 
-            <button
-              class="action-button view"
-              onclick="viewApplication('${safe(app.application_id)}')"
-            >
-              VIEW
-            </button>
-
-
             ${
               app.status === "pending"
 
               ? `
 
                 <button
-                  class="action-button approve"
-                  onclick="updateStatus('${safe(app.application_id)}','approved')"
+                  class="action approve"
+                  onclick="updateStatus(
+                    '${safe(app.application_id)}',
+                    'approved'
+                  )"
                 >
                   ✓
                 </button>
 
                 <button
-                  class="action-button reject"
-                  onclick="updateStatus('${safe(app.application_id)}','rejected')"
+                  class="action reject"
+                  onclick="updateStatus(
+                    '${safe(app.application_id)}',
+                    'rejected'
+                  )"
                 >
                   ✕
                 </button>
 
               `
 
-              : ""
+              : "—"
 
             }
 
@@ -1294,11 +903,9 @@ function displayApplications(
 }
 
 
-/*
-========================================
-SEARCH
-========================================
-*/
+/* =====================================
+   SEARCH
+===================================== */
 
 document.getElementById(
   "search"
@@ -1341,11 +948,9 @@ document.getElementById(
 );
 
 
-/*
-========================================
-REFRESH
-========================================
-*/
+/* =====================================
+   REFRESH
+===================================== */
 
 document.getElementById(
   "refreshButton"
@@ -1355,168 +960,9 @@ document.getElementById(
 );
 
 
-/*
-========================================
-VIEW APPLICATION
-========================================
-*/
-
-function viewApplication(
-  applicationId
-) {
-
-  const app =
-    allApplications.find(
-      item =>
-        item.application_id ===
-        applicationId
-    );
-
-
-  if (!app) {
-    return;
-  }
-
-
-  const details =
-    document.getElementById(
-      "details"
-    );
-
-
-  const content =
-    document.getElementById(
-      "detailsContent"
-    );
-
-
-  content.innerHTML = `
-
-    ${detail(
-      "Application ID",
-      app.application_id
-    )}
-
-    ${detail(
-      "IGN",
-      app.ign
-    )}
-
-    ${detail(
-      "UID",
-      app.uid
-    )}
-
-    ${detail(
-      "Contact",
-      app.contact
-    )}
-
-    ${detail(
-      "Role",
-      app.player_role
-    )}
-
-    ${detail(
-      "Rank",
-      app.player_rank
-    )}
-
-    ${detail(
-      "Headshot",
-      app.headshot
-    )}
-
-    ${detail(
-      "Game Mode",
-      app.game_mode
-    )}
-
-    ${detail(
-      "Microphone",
-      app.microphone
-    )}
-
-    ${detail(
-      "Previous Guild",
-      app.previous_guild
-    )}
-
-    ${detail(
-      "Reason",
-      app.reason
-    )}
-
-    ${detail(
-      "Status",
-      app.status
-    )}
-
-    ${detail(
-      "Submitted",
-      app.created_at
-    )}
-
-  `;
-
-
-  details.style.display =
-    "block";
-
-}
-
-
-/*
-========================================
-DETAIL ROW
-========================================
-*/
-
-function detail(
-  label,
-  value
-) {
-
-  return `
-
-    <div class="detail-row">
-
-      <div class="detail-label">
-        ${safe(label)}
-      </div>
-
-      <div class="detail-value">
-        ${safe(value)}
-      </div>
-
-    </div>
-
-  `;
-
-}
-
-
-/*
-========================================
-CLOSE DETAILS
-========================================
-*/
-
-function closeDetails() {
-
-  document.getElementById(
-    "details"
-  ).style.display =
-    "none";
-
-}
-
-
-/*
-========================================
-APPROVE / REJECT
-========================================
-*/
+/* =====================================
+   APPROVE / REJECT
+===================================== */
 
 async function updateStatus(
   applicationId,
@@ -1536,9 +982,7 @@ async function updateStatus(
       " this application?"
     )
   ) {
-
     return;
-
   }
 
 
@@ -1555,12 +999,16 @@ async function updateStatus(
         ),
 
         {
-
           method: "PATCH",
 
           headers: {
 
-            ...authHeaders(),
+            "apikey":
+              SUPABASE_ANON_KEY,
+
+            "Authorization":
+              "Bearer " +
+              accessToken,
 
             "Content-Type":
               "application/json",
@@ -1572,10 +1020,7 @@ async function updateStatus(
 
           body:
             JSON.stringify({
-
-              status:
-                newStatus
-
+              status: newStatus
             })
 
         }
@@ -1588,12 +1033,7 @@ async function updateStatus(
 
 
     if (!response.ok) {
-
-      throw new Error(
-        text ||
-        "Could not update application."
-      );
-
+      throw new Error(text);
     }
 
 
@@ -1602,8 +1042,6 @@ async function updateStatus(
   }
 
   catch (error) {
-
-    console.error(error);
 
     alert(
       "Could not update application:\n\n" +
@@ -1615,11 +1053,9 @@ async function updateStatus(
 }
 
 
-/*
-========================================
-HTML SAFETY
-========================================
-*/
+/* =====================================
+   SAFETY
+===================================== */
 
 function safe(value) {
 
@@ -1627,49 +1063,26 @@ function safe(value) {
     value === null ||
     value === undefined
   ) {
-
     return "";
-
   }
 
 
   return String(value)
 
-    .replaceAll(
-      "&",
-      "&amp;"
-    )
-
-    .replaceAll(
-      "<",
-      "&lt;"
-    )
-
-    .replaceAll(
-      ">",
-      "&gt;"
-    )
-
-    .replaceAll(
-      '"',
-      "&quot;"
-    )
-
-    .replaceAll(
-      "'",
-      "&#039;"
-    );
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 
 }
 
 
-/*
-========================================
-CHECK EXISTING LOGIN
-========================================
-*/
+/* =====================================
+   CHECK SAVED SESSION
+===================================== */
 
-async function checkExistingLogin() {
+async function checkSession() {
 
   const savedToken =
     localStorage.getItem(
@@ -1678,9 +1091,7 @@ async function checkExistingLogin() {
 
 
   if (!savedToken) {
-
     return;
-
   }
 
 
@@ -1692,28 +1103,25 @@ async function checkExistingLogin() {
 
     const response =
       await fetch(
-
         SUPABASE_URL +
         "/auth/v1/user",
-
         {
-
           method: "GET",
 
-          headers:
-            authHeaders()
+          headers: {
+            "apikey":
+              SUPABASE_ANON_KEY,
 
+            "Authorization":
+              "Bearer " +
+              accessToken
+          }
         }
-
       );
 
 
     if (!response.ok) {
-
-      throw new Error(
-        "Session expired."
-      );
-
+      throw new Error("Session expired.");
     }
 
 
@@ -1729,22 +1137,16 @@ async function checkExistingLogin() {
       "tc_admin_access_token"
     );
 
-    localStorage.removeItem(
-      "tc_admin_refresh_token"
-    );
-
   }
 
 }
 
 
-/*
-========================================
-START
-========================================
-*/
+/* =====================================
+   START
+===================================== */
 
-checkExistingLogin();
+checkSession();
 
 </script>
 
