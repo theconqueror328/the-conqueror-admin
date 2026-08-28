@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE ⚔ CONQUEROR | Admin</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #070707;
+      color: white;
+    }
+
+    header {
+      padding: 25px;
+      background: #101010;
+      border-bottom: 1px solid #292929;
+    }
+
+    header h1 {
+      margin: 0;
+      color: #ff5b22;
+    }
+
+    .container {
+      width: 94%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 30px 0;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .stat {
+      background: #101010;
+      border: 1px solid #292929;
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .stat-title {
+      color: #888;
+      font-size: 13px;
+    }
+
+    .stat-number {
+      font-size: 30px;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    input {
+      flex: 1;
+      padding: 14px;
+      background: #101010;
+      border: 1px solid #333;
+      border-radius: 8px;
+      color: white;
+    }
+
+    button {
+      padding: 12px 18px;
+      border: 0;
+      border-radius: 8px;
+      background: #ff541c;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      background: #101010;
+      border: 1px solid #292929;
+      border-radius: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 750px;
+    }
+
+    th,
+    td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #242424;
+    }
+
+    th {
+      color: #ff652c;
+    }
+
+    .status {
+      padding: 5px 9px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .pending {
+      background: #4a3200;
+      color: #ffcc55;
+    }
+
+    .approved {
+      background: #063b1b;
+      color: #52e38b;
+    }
+
+    .rejected {
+      background: #430909;
+      color: #ff6969;
+    }
+
+    .approve {
+      background: #087f3d;
+    }
+
+    .reject {
+      background: #a71919;
+    }
+
+    .view {
+      background: #333;
+    }
+
+    #error {
+      display: none;
+      background: #3a0b0b;
+      border: 1px solid #702020;
+      color: #ff7777;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 700px) {
+      .stats {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .toolbar {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <h1>THEㅤ⚔ㅤCONQUEROR</h1>
+    <p>Guild Recruitment Admin Dashboard</p>
+  </div>
+</header>
+
+<div class="container">
+
+  <div id="error"></div>
+
+  <div class="stats">
+
+    <div class="stat">
+      <div class="stat-title">TOTAL APPLICATIONS</div>
+      <div class="stat-number" id="total">0</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-title">PENDING</div>
+      <div class="stat-number" id="pending">0</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-title">APPROVED</div>
+      <div class="stat-number" id="approved">0</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-title">REJECTED</div>
+      <div class="stat-number" id="rejected">0</div>
+    </div>
+
+  </div>
+
+  <div class="toolbar">
+
+    <input
+      id="search"
+      type="text"
+      placeholder="Search by IGN or UID..."
+    >
+
+    <button onclick="loadApplications()">
+      🔄 REFRESH
+    </button>
+
+  </div>
+
+  <div class="table-wrapper">
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>IGN</th>
+          <th>UID</th>
+          <th>Role</th>
+          <th>Rank</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody id="applications">
+
+        <tr>
+          <td colspan="6" style="text-align:center;">
+            Loading applications...
+          </td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/*
+========================================
+SUPABASE
+========================================
+*/
+
+const SUPABASE_URL =
+  "https://muyggfhblazjqoewrxth.supabase.co";
+
+const SUPABASE_ANON_KEY =
+  "sb_publishable_M_7Cb2GtvzQqLftmUJE_1Q_fXB1e3Ma";
+
+
+let allApplications = [];
+
+
+/*
+========================================
+LOAD APPLICATIONS
+========================================
+*/
+
+async function loadApplications() {
+
+  const table =
+    document.getElementById("applications");
+
+  const error =
+    document.getElementById("error");
+
+  try {
+
+    error.style.display = "none";
+
+    const response = await fetch(
+      SUPABASE_URL +
+      "/rest/v1/applications?select=*&order=created_at.desc",
+      {
+        method: "GET",
+
+        headers: {
+          "apikey": SUPABASE_ANON_KEY,
+          "Authorization":
+            "Bearer " +
+            SUPABASE_ANON_KEY
+        }
+      }
+    );
+
+    const text =
+      await response.text();
+
+    if (!response.ok) {
+      throw new Error(text);
+    }
+
+    allApplications =
+      JSON.parse(text);
+
+    updateStats();
+
+    displayApplications(
+      allApplications
+    );
+
+  } catch (err) {
+
+    console.error(err);
+
+    error.textContent =
+      "Could not load applications: " +
+      err.message;
+
+    error.style.display = "block";
+
+    table.innerHTML = "";
+
+  }
+
+}
+
+
+/*
+========================================
+STATISTICS
+========================================
+*/
+
+function updateStats() {
+
+  document.getElementById("total")
+    .textContent =
+    allApplications.length;
+
+  document.getElementById("pending")
+    .textContent =
+    allApplications.filter(
+      a => a.status === "pending"
+    ).length;
+
+  document.getElementById("approved")
+    .textContent =
+    allApplications.filter(
+      a => a.status === "approved"
+    ).length;
+
+  document.getElementById("rejected")
+    .textContent =
+    allApplications.filter(
+      a => a.status === "rejected"
+    ).length;
+
+}
+
+
+/*
+========================================
+DISPLAY
+========================================
+*/
+
+function displayApplications(applications) {
+
+  const table =
+    document.getElementById(
+      "applications"
+    );
+
+  if (!applications.length) {
+
+    table.innerHTML = `
+      <tr>
+        <td colspan="6"
+            style="text-align:center;">
+          No applications found.
+        </td>
+      </tr>
+    `;
+
+    return;
+  }
+
+  table.innerHTML =
+    applications.map(app => `
+
+      <tr>
+
+        <td>${safe(app.ign)}</td>
+
+        <td>${safe(app.uid)}</td>
+
+        <td>${safe(app.player_role)}</td>
+
+        <td>${safe(app.player_rank)}</td>
+
+        <td>
+          <span class="status ${safe(app.status)}">
+            ${safe(app.status)}
+          </span>
+        </td>
+
+        <td>
+
+          ${
+            app.status === "pending"
+
+            ? `
+              <button
+                class="approve"
+                onclick="updateStatus('${safe(app.application_id)}','approved')"
+              >
+                ✓
+              </button>
+
+              <button
+                class="reject"
+                onclick="updateStatus('${safe(app.application_id)}','rejected')"
+              >
+                ✕
+              </button>
+            `
+
+            : "—"
+          }
+
+        </td>
+
+      </tr>
+
+    `).join("");
+
+}
+
+
+/*
+========================================
+SEARCH
+========================================
+*/
+
+document.getElementById(
+  "search"
+).addEventListener(
+  "input",
+  function() {
+
+    const term =
+      this.value
+        .toLowerCase()
+        .trim();
+
+    const filtered =
+      allApplications.filter(app =>
+
+        String(app.ign || "")
+          .toLowerCase()
+          .includes(term)
+
+        ||
+
+        String(app.uid || "")
+          .toLowerCase()
+          .includes(term)
+
+      );
+
+    displayApplications(filtered);
+
+  }
+);
+
+
+/*
+========================================
+APPROVE / REJECT
+========================================
+*/
+
+async function updateStatus(
+  applicationId,
+  newStatus
+) {
+
+  if (
+    !confirm(
+      "Change this application to " +
+      newStatus +
+      "?"
+    )
+  ) {
+    return;
+  }
+
+  try {
+
+    const response = await fetch(
+
+      SUPABASE_URL +
+      "/rest/v1/applications" +
+      "?application_id=eq." +
+      encodeURIComponent(
+        applicationId
+      ),
+
+      {
+        method: "PATCH",
+
+        headers: {
+
+          "apikey":
+            SUPABASE_ANON_KEY,
+
+          "Authorization":
+            "Bearer " +
+            SUPABASE_ANON_KEY,
+
+          "Content-Type":
+            "application/json",
+
+          "Prefer":
+            "return=minimal"
+
+        },
+
+        body:
+          JSON.stringify({
+            status: newStatus
+          })
+
+      }
+
+    );
+
+    if (!response.ok) {
+
+      const text =
+        await response.text();
+
+      throw new Error(text);
+
+    }
+
+    await loadApplications();
+
+  } catch (err) {
+
+    alert(
+      "Could not update status:\n\n" +
+      err.message
+    );
+
+  }
+
+}
+
+
+/*
+========================================
+HTML SAFETY
+========================================
+*/
+
+function safe(value) {
+
+  if (
+    value === null ||
+    value === undefined
+  ) {
+    return "";
+  }
+
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+
+}
+
+
+/*
+========================================
+START
+========================================
+*/
+
+loadApplications();
+
+</script>
+
+</body>
+  </html>
